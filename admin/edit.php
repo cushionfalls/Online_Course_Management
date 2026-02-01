@@ -247,9 +247,14 @@ if (!$edit_course && !$edit_user) {
                 <div class="card bg-base-100 shadow-xl border border-base-200">
                     <div class="card-body">
                         <h2 class="card-title text-2xl mb-4">Manage Teachers</h2>
+                        
+                        <div class="form-control w-full mb-4">
+                            <input type="text" id="teacherSearch" placeholder="Search teachers by name or email..." class="input input-bordered w-full" />
+                        </div>
+                        
                         <div class="overflow-x-auto max-h-60">
                             <table class="table w-full">
-                                <tbody>
+                                <tbody id="teacherTableBody">
                                     <?php foreach ($users as $u): ?>
                                         <tr>
                                             <td><?php echo htmlspecialchars($u['fullname']); ?></td>
@@ -284,5 +289,62 @@ if (!$edit_course && !$edit_user) {
         <?php endif; ?>
     </main>
 </div>
+
+<script>
+const teacherSearch = document.getElementById('teacherSearch');
+const teacherTableBody = document.getElementById('teacherTableBody');
+
+if (teacherSearch && teacherTableBody) {
+    let searchTimeout;
+    
+    loadTeachers('');
+    
+    teacherSearch.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        
+        searchTimeout = setTimeout(() => {
+            const query = teacherSearch.value.trim();
+            loadTeachers(query);
+        }, 300);
+    });
+    
+    function loadTeachers(query) {
+        fetch(`search_api.php?action=search_teachers&q=${encodeURIComponent(query)}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error('Error:', data.error);
+                    return;
+                }
+                
+                teacherTableBody.innerHTML = '';
+                
+                if (data.length === 0) {
+                    teacherTableBody.innerHTML = '<tr><td colspan="3" class="text-center">No teachers found.</td></tr>';
+                } else {
+                    data.forEach(teacher => {
+                        const row = `
+                            <tr>
+                                <td>${escapeHtml(teacher.fullname)}</td>
+                                <td>${escapeHtml(teacher.email)}</td>
+                                <td class="text-right"><a href="edit.php?edit_user=${teacher.id}" class="btn btn-sm btn-ghost">Edit</a></td>
+                            </tr>
+                        `;
+                        teacherTableBody.innerHTML += row;
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+    }
+    
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+}
+</script>
 
 <?php include '../includes/footer.php'; ?>
