@@ -45,6 +45,16 @@ $conn->query($table_user)       or die("Users table error: " . $conn->error);
 $conn->query($course_table)     or die("Courses table error: " . $conn->error);
 $conn->query($table_assignment) or die("Assignments table error: " . $conn->error);
 
+$table_enrollment = "CREATE TABLE IF NOT EXISTS enrollments (
+    enrollment_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    student_id    INT(11) NOT NULL,
+    course_id     INT(11) NOT NULL,
+    enrolled_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE
+)";
+$conn->query($table_enrollment) or die("Enrollments table error: " . $conn->error);
+
 $check_col = $conn->query("SHOW COLUMNS FROM courses LIKE 'category'");
 if ($check_col->num_rows == 0) {
     $conn->query("ALTER TABLE courses ADD COLUMN category VARCHAR(50) DEFAULT 'General'");
