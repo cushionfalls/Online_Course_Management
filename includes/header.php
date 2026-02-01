@@ -15,7 +15,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <body class="min-h-screen flex flex-col bg-base-100 text-base-content font-sans">
     <div class="navbar bg-base-100 shadow-sm border-b border-base-200">
         <div class="flex-1">
-            <a class="btn btn-ghost text-xl font-bold tracking-tight">SVM Course Manager</a>
+            <a class="btn btn-ghost text-xl font-bold tracking-tight">Learning</a>
         </div>
         <div class="flex-none">
             <ul class="menu menu-horizontal px-1">
