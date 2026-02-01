@@ -15,19 +15,17 @@ if (!isset($_GET['course_id'])) {
 $student_id = $_SESSION['user_id'];
 $course_id = $_GET['course_id'];
 
-// Check if already enrolled
 $stmt = $conn->prepare("SELECT enrollment_id FROM enrollments WHERE student_id = ? AND course_id = ?");
 $stmt->bind_param("ii", $student_id, $course_id);
 $stmt->execute();
+$stmt->store_result();
 if ($stmt->num_rows > 0) {
-    // Already enrolled
     $stmt->close();
     header("Location: index.php?msg=already_enrolled");
     exit;
 }
 $stmt->close();
 
-// Enroll
 $stmt = $conn->prepare("INSERT INTO enrollments (student_id, course_id) VALUES (?, ?)");
 $stmt->bind_param("ii", $student_id, $course_id);
 

@@ -3,7 +3,10 @@ $servername = "localhost";
 $user       = "root";
 $password   = "";
 $db         = "checkassign";
-
+$adminEmail = "adminmanish@gmail.com";
+$adminpass = "Incorrect90!";
+$admin_username = "admin";
+$hassed_adminpass = password_hash($adminpass, PASSWORD_DEFAULT);
 $conn = new mysqli($servername, $user, $password, $db);
 
 if ($conn->connect_error) {
@@ -63,5 +66,21 @@ $check_col_lvl = $conn->query("SHOW COLUMNS FROM courses LIKE 'level'");
 if ($check_col_lvl->num_rows == 0) {
     $conn->query("ALTER TABLE courses ADD COLUMN level ENUM('Beginner', 'Intermediate', 'Advanced') DEFAULT 'Beginner'");
 }
+$checkAdmin = $conn->prepare(
+    "SELECT id FROM users WHERE role = 'admin' LIMIT 1"
+);
+$checkAdmin->execute();
+$checkAdmin->store_result();
 
+if ($checkAdmin->num_rows === 0) {
+    $stmt = $conn->prepare(
+        "INSERT INTO users (username, email, password, fullname, role)
+         VALUES (?, ?, ?, ?, 'admin')"
+    );
+
+    $username = "admin";
+    $fullname = "System Admin";
+    $stmt->bind_param("ssss", $username, $adminEmail, $hassed_adminpass, $fullname);
+    $stmt->execute();
+}
 ?>

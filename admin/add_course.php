@@ -9,7 +9,6 @@ include '../includes/header.php';
 
 $message = "";
 
-// Fetch teachers for dropdown
 $teachers = [];
 $t_result = $conn->query("SELECT id, fullname FROM users WHERE role = 'teacher'");
 if ($t_result) {
