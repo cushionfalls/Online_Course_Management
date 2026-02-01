@@ -73,14 +73,14 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                     <label class="label" for="email">
                         <span class="label-text font-medium">Email</span>
                     </label>
-                    <input type="email" id="email" name="email" placeholder="email@example.com" class="input input-bordered w-full" required value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" />
+                    <input type="email" id="email" name="email"  class="input input-bordered w-full" required value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" />
                 </div>
 
                 <div class="form-control w-full">
                     <label class="label" for="password">
                         <span class="label-text font-medium">Password</span>
                     </label>
-                    <input type="password" id="password" name="password" placeholder="Enter your password" class="input input-bordered w-full" required />
+                    <input type="password" id="password" name="password"  class="input input-bordered w-full" required />
                 </div>
 
                 <button type="submit" class="btn btn-primary w-full text-lg">Login</button>
@@ -93,9 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             </div>
         </div>
 
-        <!-- Right Side: Content -->
         <div class="card-body lg:w-1/2 bg-primary text-primary-content flex flex-col justify-center p-8 md:p-12 relative overflow-hidden">
-             <!-- Decorative background pattern (optional) -->
+
             <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
                  <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                     <defs>

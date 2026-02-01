@@ -25,7 +25,7 @@ if ($result) {
                 <li><a href="add_course.php">Add Course & Assign Teacher</a></li>
                 <li><a href="add_teacher.php">Add Teacher</a></li>
                 <li><a href="edit.php">Manage Courses & Teachers</a></li>
-                <li><a href="manage_students.php" class="active">Manage Students</a></li>
+                <li><a href="manage_students.php" class="active">View Students</a></li>
                 <li><a href="delete.php">Delete Data</a></li>
             </ul>
         </div>
@@ -34,7 +34,7 @@ if ($result) {
     <main class="md:col-span-3">
         <div class="card bg-base-100 shadow-xl border border-base-200">
             <div class="card-body">
-                <h2 class="card-title text-2xl mb-6">Manage Students</h2>
+                <h2 class="card-title text-2xl mb-6">View Students</h2>
                 
                 <div class="overflow-x-auto">
                     <table class="table w-full">

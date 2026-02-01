@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <li><a href="add_course.php">Add Course & Assign Teacher</a></li>
                 <li><a href="add_teacher.php" class="active">Add Teacher</a></li>
                 <li><a href="edit.php">Manage Courses & Teachers</a></li>
-                <li><a href="manage_students.php">Manage Students</a></li>
+                <li><a href="manage_students.php">View Students</a></li>
                 <li><a href="delete.php">Delete Data</a></li>
             </ul>
         </div>

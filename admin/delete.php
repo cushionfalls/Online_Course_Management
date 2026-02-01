@@ -63,7 +63,7 @@ if ($c_res) {
                 <li><a href="add_course.php">Add Course & Assign Teacher</a></li>
                 <li><a href="add_teacher.php">Add Teacher</a></li>
                 <li><a href="edit.php">Manage Courses & Teachers</a></li>
-                <li><a href="manage_students.php">Manage Students</a></li>
+                <li><a href="manage_students.php">View Students</a></li>
                 <li><a href="delete.php" class="active">Delete Data</a></li>
             </ul>
         </div>
