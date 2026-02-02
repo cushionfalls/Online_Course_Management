@@ -2,7 +2,7 @@
 $servername = "localhost";
 $user       = "root";
 $password   = "";
-$db         = "checkassign";
+$db         = "onlinecourse";
 $adminEmail = "adminmanish@gmail.com";
 $adminpass = "Incorrect90!";
 $admin_username = "admin";
